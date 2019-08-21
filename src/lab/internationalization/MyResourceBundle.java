@@ -8,7 +8,7 @@ import java.util.MissingResourceException;
 import java.util.ResourceBundle;
 
 public class MyResourceBundle {
-	private Map<Locale, Map<String, String>> localeResources;
+	private Map<String, Map<String, String>> localeResources;
 
 	public MyResourceBundle() {
 		localeResources = new HashMap<>();
@@ -16,8 +16,6 @@ public class MyResourceBundle {
 			Map<String, String> resources = new HashMap<>();
 
 			ResourceBundle systemTexts = ResourceBundle.getBundle("MyLabels", config.getLocale());
-			ResourceBundle translationTexts = ResourceBundle.getBundle("MyLabels", config.getLocale());
-
 			Enumeration systemKeys = systemTexts.getKeys();
 
 			while (systemKeys.hasMoreElements()) {
@@ -25,18 +23,13 @@ public class MyResourceBundle {
 				resources.put(key, systemTexts.getString(key));
 			}
 
-			Enumeration translationKeys = translationTexts.getKeys();
-			while (translationKeys.hasMoreElements()) {
-				String key = (String) translationKeys.nextElement();
-				resources.put(key, translationTexts.getString(key));
-			}
-
-			localeResources.put(config.getLocale(), resources);
+			System.out.println(config.getLocale());
+			localeResources.put(config.getLocale().toString(), resources);
 		}
 
 	}
 
-	public String getText(Locale locale, String key) {
+	public String getText(String locale, String key) {
 		String text = null;
 
 		text = localeResources.get(locale).get(key);

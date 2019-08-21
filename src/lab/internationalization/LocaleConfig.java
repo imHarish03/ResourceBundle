@@ -3,7 +3,7 @@ package lab.internationalization;
 import java.util.Locale;
 
 public enum LocaleConfig {
-	ENGLISH_US("en", "US"), ENGLISH("en", "IN");
+	ENGLISH_US("en", "US"), ENGLISH("en", "IN"), CUSTOM("ms", "MY");
 
 	private String language;
 	private String country;
